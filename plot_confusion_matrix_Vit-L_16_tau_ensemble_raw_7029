@@ -1,0 +1,73 @@
+"""
+Plot confusion matrix (raw counts) for KL 0–4,
+in the same style as the example figure.
+
+Assumes a CSV with columns:
+    true_label, predicted_label
+like the ones saved from your ViT-L16 ensemble script.
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+# =========================
+# CONFIG
+# =========================
+CSV_FILE = "ViT_L16_CORAL_ensemble_test_predictions_kneeKL224_TTA_tau.csv"  # change if needed
+CLASS_NAMES = ["0", "1", "2", "3", "4"]   # KL grades
+SAVE_FIG = True
+OUTPUT_FIG = "confusion_matrix_vit_l16_raw.png"
+
+
+# =========================
+# LOAD PREDICTIONS
+# =========================
+df = pd.read_csv(CSV_FILE)
+y_true = df["true_label"].to_numpy()
+y_pred = df["predicted_label"].to_numpy()
+
+# =========================
+# CONFUSION MATRIX
+# =========================
+cm = confusion_matrix(y_true, y_pred, labels=list(range(len(CLASS_NAMES))))
+print("Confusion matrix (raw counts):")
+print(cm)
+
+# =========================
+# PLOT (MATPLOTLIB ONLY)
+# =========================
+fig, ax = plt.subplots(figsize=(5, 5), dpi=150)
+
+im = ax.imshow(cm, interpolation="nearest", cmap="Blues")
+
+# Tick labels
+ax.set_xticks(np.arange(len(CLASS_NAMES)))
+ax.set_yticks(np.arange(len(CLASS_NAMES)))
+ax.set_xticklabels(CLASS_NAMES)
+ax.set_yticklabels(CLASS_NAMES)
+
+ax.set_xlabel("Predicted label")
+ax.set_ylabel("True label")
+
+# Put count text in each cell
+thresh = cm.max() / 2.0
+for i in range(cm.shape[0]):
+    for j in range(cm.shape[1]):
+        value = cm[i, j]
+        ax.text(
+            j, i, str(value),
+            ha="center", va="center",
+            color="white" if value > thresh else "black",
+            fontsize=10
+        )
+
+# Optional: tighter layout, remove top/right spines
+plt.tight_layout()
+
+if SAVE_FIG:
+    plt.savefig(OUTPUT_FIG, dpi=300, bbox_inches="tight")
+    print(f"Figure saved as: {OUTPUT_FIG}")
+
+plt.show()

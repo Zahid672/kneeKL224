@@ -1,0 +1,2 @@
+accuracy,precision_macro,recall_macro,f1_macro,specificity_macro,auroc_macro,fold,split,val_loss,val_acc
+0.6859903381642513,0.7083567468759503,0.6837885539436062,0.6942138442472068,0.9156144161043178,0.7980954528468727,-1,test_ensemble_meanprobs,0.0,0.6859903381642513

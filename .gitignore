@@ -1,0 +1,72 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyTorch / ML artifacts / checkpoints
+*.pt
+*.pth
+*.pth.tar
+*.ckpt
+*.ckpt.best
+checkpoints/
+runs/
+logs/
+tensorboard/
+
+# Data files (common binary/large formats)
+data/
+datasets/
+*.npy
+*.npz
+
+# Misc
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+
+# Local config
+.local
+
+# Optional: local model predictions or large outputs
+# Uncomment to ignore predictions or CSV outputs if you don't want them tracked
+# *.csv
+# outputs/
